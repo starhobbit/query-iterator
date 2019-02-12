@@ -1,6 +1,6 @@
 {
     "name": "photonite/query-iterator",
-    "description": "This is the description of the package.",
+    "description": "An iterator for queries that deal with big data collections",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Photonite\\QueryIterator\\": "src/"
+            "Photonite\\QueryIterator\\": "src/QueryIterator"
         }
     },
     "autoload-dev": {
@@ -28,11 +28,11 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Photonite\\QueryIterator\\QueryIteratorServiceProvider"
+                "Photonite\\QueryIterator\\Providers\\QueryIteratorServiceProvider"
             ]
         },
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "master"
         }
     }
 }
