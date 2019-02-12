@@ -20,7 +20,7 @@ class QueryIteratorServiceProvider extends ServiceProvider
         });
 
         $this->publishes([
-            __DIR__ . '/../../../resources/config/queryiterator.php' => config_path('queryiterator.php'),
+            __DIR__ . '/../../resources/config/queryiterator.php' => config_path('queryiterator.php'),
         ]);
     }
 
@@ -32,7 +32,7 @@ class QueryIteratorServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../../../resources/config/queryiterator.php', 'queryiterator'
+            __DIR__ . '/../../resources/config/queryiterator.php', 'queryiterator'
         );
     }
 }
