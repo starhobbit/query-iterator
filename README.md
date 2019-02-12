@@ -1,2 +1,2 @@
 # query-iterator
-QueryIterator for Laravel
+Query Iterator for Laravel
