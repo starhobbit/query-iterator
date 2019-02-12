@@ -15,7 +15,7 @@ class QueryIteratorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Builder::marco("toIterator", function ($builder, $chunkSize = null) {
+        Builder::macro("toIterator", function ($builder, $chunkSize = null) {
             return new QueryIterator($builder, $chunkSize);
         });
 
@@ -32,6 +32,7 @@ class QueryIteratorServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
+
             __DIR__ . '/../../resources/config/queryiterator.php', 'queryiterator'
         );
     }
