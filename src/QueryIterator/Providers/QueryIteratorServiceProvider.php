@@ -2,9 +2,10 @@
 
 namespace Photonite\QueryIterator\Providers;
 
-use Illuminate\Database\Query\Builder;
-use Illuminate\Support\ServiceProvider;
 use Photonite\QueryIterator\QueryIterator;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 
 class QueryIteratorServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,10 @@ class QueryIteratorServiceProvider extends ServiceProvider
     public function boot()
     {
         Builder::macro("toIterator", function ($chunkSize = null) {
+            return new QueryIterator($this, $chunkSize);
+        });
+
+        EloquentBuilder::macro("toIterator", function ($chunkSize = null) {
             return new QueryIterator($this, $chunkSize);
         });
 
