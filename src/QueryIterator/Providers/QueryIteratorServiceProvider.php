@@ -15,8 +15,8 @@ class QueryIteratorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Builder::macro("toIterator", function ($builder, $chunkSize = null) {
-            return new QueryIterator($builder, $chunkSize);
+        Builder::macro("toIterator", function ($chunkSize = null) {
+            return new QueryIterator($this, $chunkSize);
         });
 
         $this->publishes([
