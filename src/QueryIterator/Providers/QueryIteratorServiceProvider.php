@@ -32,7 +32,6 @@ class QueryIteratorServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-
             __DIR__ . '/../../resources/config/queryiterator.php', 'queryiterator'
         );
     }
