@@ -158,10 +158,16 @@ class QueryIterator implements Iterator, Countable, ArrayAccess, Arrayable
     {
         $this->bootIfNotBooted();
 
+        $chunkOffset = intdiv($offset, $this->chunkSize);
+
+        $this->loadChunk($chunkOffset);
+
         $keys = array_keys($this->chunk);
 
-        if (isset($keys[$this->offset])) {
-            return $this->chunk[$keys[$this->offset]];
+        $modulo = $offset - $chunkOffset * $this->chunkSize;
+
+        if (isset($keys[$modulo])) {
+            return $this->chunk[$keys[$modulo]];
         }
 
         return $default;
@@ -293,7 +299,7 @@ class QueryIterator implements Iterator, Countable, ArrayAccess, Arrayable
         if ($offset !== $this->chunkOffset) {
             $this->chunkOffset = $offset;
 
-            $results = $this->query->forPage($this->chunkOffset, $this->chunkSize)->get()->all();
+            $results = $this->query->forPage($this->chunkOffset + 1, $this->chunkSize)->get()->all();
 
             $this->chunk = $results;
 
@@ -356,7 +362,7 @@ class QueryIterator implements Iterator, Countable, ArrayAccess, Arrayable
      */
     protected function loadNextChunk()
     {
-        $this->loadChunk($this->chunkOffset + 1);
+        $this->loadChunk(($this->chunkOffset ?? -1) + 1);
     }
 
     /**
