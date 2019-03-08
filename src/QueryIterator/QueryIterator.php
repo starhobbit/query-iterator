@@ -122,7 +122,11 @@ class QueryIterator implements Iterator, Countable, ArrayAccess, Arrayable
      */
     public function valid()
     {
-        return !$this->reachedEnd();
+        $currentChunkSize = count($this->chunk);
+
+        return is_null($this->chunkOffset)
+            || $currentChunkSize == $this->chunkSize
+            || $this->offset < $currentChunkSize;
     }
 
     /**
